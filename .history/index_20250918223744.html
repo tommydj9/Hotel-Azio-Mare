@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anzio d'aMare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Miglioramento immagini su mobile */
+        @media (max-width: 640px) {
+            img {
+                border-radius: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body class="flex flex-col min-h-screen bg-gray-50">
+    <!-- Navbar -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto flex justify-between items-center py-4 px-4 sm:px-6">
+            <h1 class="text-xl sm:text-2xl font-bold text-pink-600">Anzio d'aMare</h1>
+            <button id="menu-toggle" class="sm:hidden text-pink-600 focus:outline-none">☰</button>
+            <ul id="menu"
+                class="hidden sm:flex gap-6 text-gray-700 font-medium flex-col sm:flex-row sm:items-center absolute sm:static top-full left-0 w-full sm:w-auto bg-white sm:bg-transparent shadow sm:shadow-none p-4 sm:p-0">
+                <li><a href="#suite" class="hover:text-pink-600 block py-2 sm:py-0">Suite</a></li>
+                <li><a href="#servizi" class="hover:text-pink-600 block py-2 sm:py-0">Servizi</a></li>
+                <li><a href="#galleria" class="hover:text-pink-600 block py-2 sm:py-0">Galleria</a></li>
+                <li><a href="#contatti" class="hover:text-pink-600 block py-2 sm:py-0">Contatti</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="flex-1 container mx-auto px-4 sm:px-6 py-12 text-center">
+        <h2 class="text-3xl sm:text-5xl font-bold text-gray-800 mb-4 leading-tight">La Suite per un Amore da Sogno</h2>
+        <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto mb-6 leading-relaxed">
+            Anniversario? Dichiarazione d’amore? Fuga romantica? <strong>Anzio d'aMare</strong> è la Suite che fa per
+            te! Un intero appartamento con camera matrimoniale, bagno e terrazza sul mare nel centro storico della città
+            di Nerone. Dotato di ogni comfort: Jacuzzi, camino, frigo bar, la casa è studiata per realizzare i vostri
+            sogni romantici.
+        </p>
+        <a href="#contatti"
+            class="bg-pink-600 text-white px-6 py-3 rounded-full text-lg hover:bg-pink-700 transition shadow-md inline-block">
+            Prenota Ora
+        </a>
+    </section>
+
+    <!-- Sezione Immagini Suite -->
+    <section id="suite" class="container mx-auto px-4 sm:px-6 py-12">
+        <h3 class="text-2xl sm:text-3xl font-semibold text-center text-gray-800 mb-8">La Nostra Suite</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+            <div class="overflow-hidden rounded-2xl aspect-[4/3]">
+                <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/592747738.jpg?k=c70a15ebd54f9776afa5c31128e735635b2c1557f381e661d55cd2582211b102&o="
+                    alt="Suite vista mare"
+                    class="w-full h-full object-cover transform hover:scale-105 transition duration-500">
+            </div>
+            <div class="overflow-hidden rounded-2xl aspect-[4/3]">
+                <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/371501232.jpg?k=946efc9423f445ada2ed1d0dea902251b6ceb3ba6ea093746af1cc21f2ed1900&o="
+                    alt="Camera romantica"
+                    class="w-full h-full object-cover transform hover:scale-105 transition duration-500">
+            </div>
+            <div class="overflow-hidden rounded-2xl aspect-[4/3]">
+                <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/699800706.jpg?k=95f727661c8a61751165770dfad90933218e9def6ba7861c1e04d12d77a39d23&o="
+                    alt="Terrazza sul mare"
+                    class="w-full h-full object-cover transform hover:scale-105 transition duration-500">
+            </div>
+        </div>
+    </section>
+
+    <!-- Sezione Servizi -->
+    <section id="servizi" class="bg-pink-50 py-12">
+        <div class="container mx-auto px-4 sm:px-6">
+            <h3 class="text-2xl sm:text-3xl font-semibold text-center text-gray-800 mb-8">Servizi</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+                <div class="bg-white shadow-lg rounded-2xl overflow-hidden flex flex-col">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/699799622.jpg?k=b2a3c8c64b15f6015d17258685a073251244884cb03532985f866c6c46f5bc47&o="
+                        alt="Jacuzzi" class="w-full h-48 sm:h-56 object-cover">
+                    <div class="p-4 text-center flex-1 flex flex-col justify-center">
+                        <h4 class="font-semibold text-lg mb-2">Jacuzzi</h4>
+                        <p class="text-gray-600 text-sm sm:text-base">Rilassati nella nostra Jacuzzi privata con vista
+                            mare.</p>
+                    </div>
+                </div>
+                <div class="bg-white shadow-lg rounded-2xl overflow-hidden flex flex-col">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/371501158.jpg?k=bccb73a35affdf924ce345fc0dc84d8b9bcfe04a054ac66d99f92015af3f384f&o="
+                        alt="Camino" class="w-full h-48 sm:h-56 object-cover">
+                    <div class="p-4 text-center flex-1 flex flex-col justify-center">
+                        <h4 class="font-semibold text-lg mb-2">Camino</h4>
+                        <p class="text-gray-600 text-sm sm:text-base">Goditi serate romantiche accanto al camino.</p>
+                    </div>
+                </div>
+                <div class="bg-white shadow-lg rounded-2xl overflow-hidden flex flex-col">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/592747746.jpg?k=703fc950ea4bd05cf981eff8ecbdff1f43bb95286231906d73bbde36985fd58c&o="
+                        alt="Frigo Bar" class="w-full h-48 sm:h-56 object-cover">
+                    <div class="p-4 text-center flex-1 flex flex-col justify-center">
+                        <h4 class="font-semibold text-lg mb-2">Frigo Bar</h4>
+                        <p class="text-gray-600 text-sm sm:text-base">Bevande e snack sempre a disposizione.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galleria Foto -->
+    <section id="galleria" class="container mx-auto px-4 sm:px-6 py-12">
+        <h3 class="text-2xl sm:text-3xl font-semibold text-center text-gray-800 mb-8">Galleria Fotografica</h3>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+            <img src="https://t-ec.bstatic.com/images/hotel/max1024x768/104876539.jpg" alt="Foto galleria 1"
+                class="rounded-xl object-cover w-full h-40 sm:h-48">
+            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/104876545.jpg" alt="Foto galleria 2"
+                class="rounded-xl object-cover w-full h-40 sm:h-48">
+            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/104876550.jpg" alt="Foto galleria 3"
+                class="rounded-xl object-cover w-full h-40 sm:h-48">
+            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/104876560.jpg" alt="Foto galleria 4"
+                class="rounded-xl object-cover w-full h-40 sm:h-48">
+            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/104876570.jpg" alt="Foto galleria 5"
+                class="rounded-xl object-cover w-full h-40 sm:h-48">
+            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/104876580.jpg" alt="Foto galleria 6"
+                class="rounded-xl object-cover w-full h-40 sm:h-48">
+        </div>
+    </section>
+
+    <!-- Contatti -->
+    <section id="contatti" class="container mx-auto px-4 sm:px-6 py-12">
+        <h3 class="text-2xl sm:text-3xl font-semibold text-center text-gray-800 mb-8">Contatti</h3>
+        <div class="max-w-md mx-auto text-center space-y-2 text-sm sm:text-base">
+            <p>📍 Via Antonio Gramsci, 66 - Anzio (RM)</p>
+            <p>📞 +39 123 456789</p>
+            <p>📧 info@anziodamare.it</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-gray-200 mt-12">
+        <div class="container mx-auto px-4 sm:px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-sm sm:text-base">&copy; 2025 Anzio d'aMare - Tutti i diritti riservati</p>
+            <ul class="flex gap-4 text-sm sm:text-base">
+                <li><a href="#" class="hover:text-white">Privacy</a></li>
+                <li><a href="#" class="hover:text-white">Termini</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script>
+        // Toggle menu su mobile
+        document.getElementById('menu-toggle').addEventListener('click', () => {
+            document.getElementById('menu').classList.toggle('hidden');
+        });
+    </script>
+</body>
+
+</html>
