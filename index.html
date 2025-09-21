@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anzio d'aMare</title>
+    <meta name="description"
+        content="Anzio d'aMare - Suite romantica con vista mare, jacuzzi e camino nel cuore di Anzio. Prenota ora la tua fuga d'amore!">
+    <title>Anzio d'aMare | Suite Romantica sul Mare</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Miglioramento immagini su mobile */
@@ -13,68 +15,108 @@
                 border-radius: 1rem;
             }
         }
+
+        /* Animazione Fade-in */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navbar link underline animata */
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            cursor: pointer;
+            width: 0;
+            height: 2px;
+            background-color: #0c1ba2;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
     </style>
 </head>
 
 <body class="flex flex-col min-h-screen bg-gray-50">
+
     <!-- Navbar -->
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <nav class="container mx-auto flex justify-between items-center py-4 px-4 sm:px-6">
-            <h1 class="text-xl sm:text-2xl font-bold text-pink-600">Anzio d'aMare</h1>
-            <button id="menu-toggle" class="sm:hidden text-pink-600 focus:outline-none">☰</button>
+    <header class="fixed w-full top-0 z-50">
+        <nav
+            class="backdrop-blur-md bg-white/70 shadow-md container mx-auto flex justify-between items-center py-3 px-4 sm:px-6 rounded-b-2xl">
+            <!-- Logo + Nome -->
+            <div class="flex items-center space-x-3">
+                <img src="https://cdn-icons-png.flaticon.com/128/3313/3313341.png" alt="Logo" class="w-8 h-8">
+                <h1 class="text-xl sm:text-2xl font-bold text-blue-800 tracking-wide">Anzio d'aMare</h1>
+            </div>
+
+            <!-- Menu Desktop -->
             <ul id="menu"
-                class="hidden sm:flex gap-6 text-gray-700 font-medium flex-col sm:flex-row sm:items-center absolute sm:static top-full left-0 w-full sm:w-auto bg-white sm:bg-transparent shadow sm:shadow-none p-4 sm:p-0">
-                <li><a href="#suite" class="hover:text-pink-600 block py-2 sm:py-0">Suite</a></li>
-                <li><a href="#servizi" class="hover:text-pink-600 block py-2 sm:py-0">Servizi</a></li>
-                <li><a href="#galleria" class="hover:text-pink-600 block py-2 sm:py-0">Galleria</a></li>
-                <li><a href="#contatti" class="hover:text-pink-600 block py-2 sm:py-0">Contatti</a></li>
+                class="hidden sm:flex gap-6 text-gray-700 font-medium items-center transition-all duration-300">
+                <li><a href="#suite" class="nav-link hover:text-blue-800">Suite</a></li>
+                <li><a href="#servizi" class="nav-link hover:text-blue-800">Servizi</a></li>
+                <li><a href="#galleria" class="nav-link hover:text-blue-800">Galleria</a></li>
+                <li><a href="#contatti" class="nav-link hover:text-blue-800">Contatti</a></li>
             </ul>
+
+            <!-- Pulsante Mobile -->
+            <button id="menu-toggle" class="sm:hidden text-blue-800 focus:outline-none text-3xl">☰</button>
         </nav>
+
+        <!-- Menu Mobile -->
+        <div id="mobile-menu"
+            class="hidden flex-col bg-white/90 backdrop-blur-md shadow-lg absolute w-full left-0 top-full p-6 space-y-4 text-lg">
+            <a href="#suite" class="block hover:text-blue-800">Suite</a>
+            <a href="#servizi" class="block hover:text-blue-800">Servizi</a>
+            <a href="#galleria" class="block hover:text-blue-800">Galleria</a>
+            <a href="#contatti" class="block hover:text-blue-800">Contatti</a>
+        </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="flex-1 container mx-auto px-4 sm:px-6 py-12 text-center">
-        <h2 class="text-3xl sm:text-5xl font-bold text-gray-800 mb-4 leading-tight">La Suite per un Amore da Sogno</h2>
-        <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto mb-6 leading-relaxed">
-            Anniversario? Dichiarazione d’amore? Fuga romantica? <strong>Anzio d'aMare</strong> è la Suite che fa per
-            te! Un intero appartamento con camera matrimoniale, bagno e terrazza sul mare nel centro storico della città
-            di Nerone. Dotato di ogni comfort: Jacuzzi, camino, frigo bar, la casa è studiata per realizzare i vostri
-            sogni romantici.
-        </p>
-        <a href="#contatti"
-            class="bg-pink-600 text-white px-6 py-3 rounded-full text-lg hover:bg-pink-700 transition shadow-md inline-block">
-            Prenota Ora
-        </a>
-    </section>
+    <section class="relative h-[85vh] flex items-center justify-center text-center">
+        <!-- Immagine di sfondo -->
+        <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/371501158.jpg?k=bccb73a35affdf924ce345fc0dc84d8b9bcfe04a054ac66d99f92015af3f384f&o="
+            alt="Vista mare" class="absolute top-0 left-0 w-full h-full object-cover">
+        <!-- Overlay -->
+        <div class="absolute top-0 left-0 w-full h-full bg-black/50"></div>
 
-    <!-- Sezione Immagini Suite -->
-    <section id="suite" class="container mx-auto px-4 sm:px-6 py-12">
-        <h3 class="text-2xl sm:text-3xl font-semibold text-center text-gray-800 mb-8">La Nostra Suite</h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            <div class="overflow-hidden rounded-2xl aspect-[4/3]">
-                <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/592747738.jpg?k=c70a15ebd54f9776afa5c31128e735635b2c1557f381e661d55cd2582211b102&o="
-                    alt="Suite vista mare"
-                    class="w-full h-full object-cover transform hover:scale-105 transition duration-500">
-            </div>
-            <div class="overflow-hidden rounded-2xl aspect-[4/3]">
-                <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/371501232.jpg?k=946efc9423f445ada2ed1d0dea902251b6ceb3ba6ea093746af1cc21f2ed1900&o="
-                    alt="Camera romantica"
-                    class="w-full h-full object-cover transform hover:scale-105 transition duration-500">
-            </div>
-            <div class="overflow-hidden rounded-2xl aspect-[4/3]">
-                <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/699800706.jpg?k=95f727661c8a61751165770dfad90933218e9def6ba7861c1e04d12d77a39d23&o="
-                    alt="Terrazza sul mare"
-                    class="w-full h-full object-cover transform hover:scale-105 transition duration-500">
-            </div>
+        <!-- Testo Hero -->
+        <div class="relative z-10 text-white max-w-2xl px-6 fade-in">
+            <h2 class="text-4xl sm:text-5xl font-bold mb-4 leading-tight drop-shadow-lg">
+                Vivi l’Esperienza Unica della Nostra Suite
+            </h2>
+            <p class="text-lg sm:text-xl mb-6 opacity-90">
+                Jacuzzi privata, camino romantico e terrazza sul mare ti aspettano.
+                Prenota subito e trasforma la tua fuga in un ricordo indimenticabile.
+            </p>
+            <a href="#contatti"
+                class="bg-blue-800 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg shadow-lg transition duration-300 transform hover:scale-105">
+                Prenota Ora
+            </a>
         </div>
     </section>
 
-    <!-- Sezione Servizi -->
-    <section id="servizi" class="bg-pink-50 py-12">
+    <!-- Sezione Immagini Suite -->
+    <section id="suite" class="container mx-auto px-4 sm:px-6 py-12 fade-in">
+        <h3 class="text-2xl sm:text-3xl font-semibold text-center text-gray-800 mb-8">La Nostra Suite</h3>
         <div class="container mx-auto px-4 sm:px-6">
-            <h3 class="text-2xl sm:text-3xl font-semibold text-center text-gray-800 mb-8">Servizi</h3>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-                <div class="bg-white shadow-lg rounded-2xl overflow-hidden flex flex-col">
+                <div
+                    class="bg-white shadow-lg rounded-2xl overflow-hidden flex flex-col w-full h-full object-cover transform hover:scale-105 transition duration-500">
                     <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/699799622.jpg?k=b2a3c8c64b15f6015d17258685a073251244884cb03532985f866c6c46f5bc47&o="
                         alt="Jacuzzi" class="w-full h-48 sm:h-56 object-cover">
                     <div class="p-4 text-center flex-1 flex flex-col justify-center">
@@ -83,7 +125,8 @@
                             mare.</p>
                     </div>
                 </div>
-                <div class="bg-white shadow-lg rounded-2xl overflow-hidden flex flex-col">
+                <div
+                    class="bg-white shadow-lg rounded-2xl overflow-hidden flex flex-col w-full h-full object-cover transform hover:scale-105 transition duration-500">
                     <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/371501158.jpg?k=bccb73a35affdf924ce345fc0dc84d8b9bcfe04a054ac66d99f92015af3f384f&o="
                         alt="Camino" class="w-full h-48 sm:h-56 object-cover">
                     <div class="p-4 text-center flex-1 flex flex-col justify-center">
@@ -91,7 +134,8 @@
                         <p class="text-gray-600 text-sm sm:text-base">Goditi serate romantiche accanto al camino.</p>
                     </div>
                 </div>
-                <div class="bg-white shadow-lg rounded-2xl overflow-hidden flex flex-col">
+                <div
+                    class="bg-white shadow-lg rounded-2xl overflow-hidden flex flex-col w-full h-full object-cover transform hover:scale-105 transition duration-500">
                     <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/592747746.jpg?k=703fc950ea4bd05cf981eff8ecbdff1f43bb95286231906d73bbde36985fd58c&o="
                         alt="Frigo Bar" class="w-full h-48 sm:h-56 object-cover">
                     <div class="p-4 text-center flex-1 flex flex-col justify-center">
@@ -102,6 +146,59 @@
             </div>
         </div>
     </section>
+
+    <!-- Sezione Servizi -->
+    <section id="servizi" class="py-20 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center text-blue-800 mb-16">I Nostri Servizi</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-lg hover-scale">
+                    <div class="w-16 h-16 bg-blue-200 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-concierge-bell text-2xl text-blue-800"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-4">Concierge</h3>
+                    <p class="text-gray-600 text-center">Concierge preparato e disponibile a soddisfare ogni vostra
+                        richiesta</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover-scale">
+                    <div class="w-16 h-16 bg-blue-200 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-utensils text-2xl text-blue-800"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-4">Ristorante</h3>
+                    <p class="text-gray-600 text-center">Cucina tipica salentina e mediterranea</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover-scale">
+                    <div class="w-16 h-16 bg-blue-200 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-wifi text-2xl text-blue-800"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-4">Wi-Fi Gratuito</h3>
+                    <p class="text-gray-600 text-center">Connessione internet in tutta la struttura</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover-scale">
+                    <div class="w-16 h-16 bg-blue-200 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-parking text-2xl text-blue-800"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-4">Parcheggio</h3>
+                    <p class="text-gray-600 text-center">Parcheggio gratuito per gli ospiti</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover-scale">
+                    <div class="w-16 h-16 bg-blue-200 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-child text-2xl text-blue-800"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-4">Attività Bambini</h3>
+                    <p class="text-gray-600 text-center">Area giochi e attività dedicate ai più piccoli</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg hover-scale">
+                    <div class="w-16 h-16 bg-blue-200 rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-shuttle-van text-2xl text-blue-800"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-center mb-4">Trasporti</h3>
+                    <p class="text-gray-600 text-center">Servizio navetta su richiesta</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- Galleria Foto -->
     <section id="galleria" class="container mx-auto px-4 sm:px-6 py-12">
@@ -125,7 +222,7 @@
     <!-- Recensioni -->
     <section id="recensioni" class="py-20 bg-gray-50">
         <div class="max-w-6xl mx-auto px-4">
-            <h2 class="text-3xl sm:text-4xl font-bold text-center text-pink-600 mb-12">
+            <h2 class="text-3xl sm:text-4xl font-bold text-center text-blue-800 mb-12">
                 Cosa Dicono i Nostri Clienti
             </h2>
 
@@ -143,10 +240,11 @@
                                 </div>
                             </div>
                             <p class="text-gray-700 flex-1">
-                                "Siamo stati in questo Hotel la seconda settimana di Agosto, e nonostante il caos di
-                                questo periodo, la realtà ha superato di gran lunga le nostre aspettative."
+                                "L' arrivo con il cocktail di benvenuto è stato fantastico,
+                                l' albergatore è stato molto gentile ci ha messo subito a nostro agio. La location
+                                ...fantastica."
                             </p>
-                            <p class="font-semibold text-pink-600 mt-3">— Sofia L.</p>
+                            <p class="font-semibold text-blue-800 mt-3">— Valentina S.</p>
                         </div>
                     </div>
 
@@ -160,10 +258,10 @@
                                 </div>
                             </div>
                             <p class="text-gray-700 flex-1">
-                                "Il proprietario Massimo è molto disponibile, accontentando i propri clienti per una
-                                vacanza splendida!"
+                                "Stanza bellissima, tutto pulito e sistemato!
+                                Il proprietario é di una disponibilità e gentilezza unica.. "
                             </p>
-                            <p class="font-semibold text-pink-600 mt-3">— Monica C.</p>
+                            <p class="font-semibold text-blue-800 mt-3">— Simone B.</p>
                         </div>
                     </div>
 
@@ -177,10 +275,13 @@
                                 </div>
                             </div>
                             <p class="text-gray-700 flex-1">
-                                "Siamo tornati per la seconda volta quest'estate. Tutto ottimo, gestione familiare e
-                                ospitalità al top."
+                                "Alloggio con vasca idromassaggio,tv,condizionatore,camino, frigo bar con bevande e
+                                acqua, e un bellissimo terrazzo all'esterno con tavolino, sedie e ombrellone. Camera con
+                                tutti i comfort, pulizia eccezionale, che dire consigliatissimo e ci ritorneremo
+                                sicuramente per un altra occasione speciale. Grazie"
                             </p>
-                            <p class="font-semibold text-pink-600 mt-3">— Laura M.</p>
+                            <p class="font-semibold text-blue-800 mt-3">—
+                                Battista M.</p>
                         </div>
                     </div>
                 </div>
@@ -192,7 +293,7 @@
             <div class="text-center mt-8">
                 <a href="https://www.tripadvisor.it/Hotel_Review-g1024739-d574808-Reviews-Hotel_Costa_d_Oro-Salve_Province_of_Lecce_Puglia.html"
                     target="_blank"
-                    class="inline-flex items-center px-6 py-3 bg-pink-600 text-white rounded-full shadow-md hover:bg-pink-700 transition">
+                    class="inline-flex items-center px-6 py-3 bg-blue-800 text-white rounded-full shadow-md hover:bg-blue-700 transition">
                     <i class="fab fa-tripadvisor mr-2"></i>
                     Leggi tutte le recensioni su Tripadvisor
                 </a>
@@ -200,19 +301,32 @@
         </div>
     </section>
 
+    <section id="contatti" class="py-16 bg-blue-100">
+        <div class="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+                <h3 class="text-3xl font-bold text-gray-800 mb-4">Contattaci</h3>
+                <p class="text-gray-600 mb-6">Per info, prenotazioni o richieste particolari, siamo a tua disposizione.
+                </p>
+                <ul class="space-y-2 text-gray-700">
+                    <li>📍 Centro Storico di Anzio</li>
+                    <li>📞 +39 350 063 0818</li>
+                    <li>📧 info@anzioamare.it</li>
+                </ul>
+            </div>
+            <iframe class="w-full h-64 rounded-2xl shadow-lg"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3779.681113053288!2d12.623!3d41.450!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDFsMjYnNTguMCJOIDEywrAzNyczMC4wIkU!5e0!3m2!1sit!2sit!4v1680000000000"
+                allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="bg-gray-900 text-gray-300 mt-16">
         <div class="max-w-6xl mx-auto px-4 py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
-
-            <!-- Logo e Descrizione -->
             <div>
                 <h3 class="text-xl font-bold text-white mb-4">Anzio d'aMare</h3>
-                <p class="text-gray-400 text-sm">
-                    La tua suite romantica nel cuore di Anzio. Vista mare, jacuzzi e relax in un ambiente unico.
+                <p class="text-gray-400 text-sm">La tua suite romantica nel cuore di Anzio. Vista mare, jacuzzi e relax.
                 </p>
             </div>
-
-            <!-- Link Utili -->
             <div>
                 <h4 class="text-lg font-semibold text-white mb-4">Link Utili</h4>
                 <ul class="space-y-2">
@@ -222,8 +336,6 @@
                     <li><a href="#contatti" class="hover:text-white transition">Contatti</a></li>
                 </ul>
             </div>
-
-            <!-- Contatti -->
             <div>
                 <h4 class="text-lg font-semibold text-white mb-4">Contatti</h4>
                 <ul class="space-y-2 text-sm">
@@ -232,8 +344,6 @@
                     <li>📧 info@anzioamare.it</li>
                 </ul>
             </div>
-
-            <!-- Social -->
             <div>
                 <h4 class="text-lg font-semibold text-white mb-4">Seguici</h4>
                 <div class="flex space-x-4">
@@ -243,35 +353,48 @@
                 </div>
             </div>
         </div>
-
         <div class="border-t border-gray-700 text-center py-6 text-sm text-gray-500">
             &copy; 2024 Anzio d'aMare. Tutti i diritti riservati.
         </div>
     </footer>
+
+    <!-- Bottone WhatsApp -->
+    <a href="https://wa.me/393500630818" target="_blank"
+        class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition">
+        💬
+    </a>
 
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
     <!-- SwiperJS Script -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <script>
+        // Menu Mobile Toggle
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+            document.getElementById("menu").classList.toggle("hidden");
+        });
+
+        // Fade-in Animation on Scroll
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.2 });
+
+        fadeElements.forEach(el => observer.observe(el));
+
+        // Swiper per recensioni
         new Swiper('.recensioniSwiper', {
             slidesPerView: 1,
             spaceBetween: 20,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            autoplay: {
-                delay: 5000,
-            },
-            breakpoints: {
-                640: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 },
-            },
+            pagination: { el: '.swiper-pagination', clickable: true },
+            autoplay: { delay: 5000 },
+            breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
         });
     </script>
-
 </body>
 
 </html>
