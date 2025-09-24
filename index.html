@@ -8,6 +8,10 @@
         content="Anzio d'aMare - Suite romantica con vista mare, jacuzzi e camino nel cuore di Anzio. Prenota ora la tua fuga d'amore!">
     <title>Anzio d'aMare | Suite Romantica sul Mare</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
     <style>
         /* Miglioramento immagini su mobile */
         @media (max-width: 640px) {
@@ -48,6 +52,15 @@
         .nav-link:hover::after {
             width: 100%;
         }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
 </head>
 
@@ -56,34 +69,47 @@
     <!-- Navbar -->
     <header class="fixed w-full top-0 z-50">
         <nav
-            class="backdrop-blur-md bg-white/70 shadow-md container mx-auto flex justify-between items-center py-3 px-4 sm:px-6 rounded-b-2xl">
-            <!-- Logo + Nome -->
+            class="backdrop-blur-md bg-white/60 shadow-md container mx-auto flex justify-between items-center py-4 px-6 sm:px-8 rounded-b-2xl transition-all duration-300">
+            <!-- Logo -->
             <div class="flex items-center space-x-3">
-                <img src="https://cdn-icons-png.flaticon.com/128/3313/3313341.png" alt="Logo" class="w-8 h-8">
-                <h1 class="text-xl sm:text-2xl font-bold text-blue-800 tracking-wide">Anzio d'aMare</h1>
+                <!-- <img src="https://sdmntprwestus3.oaiusercontent.com/files/00000000-d848-61fd-93ee-c00b4be46d52/raw?se=2025-09-21T17%3A46%3A46Z&sp=r&sv=2024-08-04&sr=b&scid=346952c3-4be6-5a42-9451-8ea1b5ae9772&skoid=6658dbdd-f305-4d30-8f6b-d62218202cb9&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-09-21T09%3A43%3A31Z&ske=2025-09-22T09%3A43%3A31Z&sks=b&skv=2024-08-04&sig=Jcb9kvuHYg707kk8e7vmk48v05UXJDSiC8K1QUVEqw8%3D"
+                    alt="Logo" class="w-16 h-16 rounded-full border-2 border-blue-800 p-1"> -->
+                <h1 class="text-2xl sm:text-3xl font-bold text-blue-800 tracking-wide">Anzio d'aMare</h1>
             </div>
 
             <!-- Menu Desktop -->
-            <ul id="menu"
-                class="hidden sm:flex gap-6 text-gray-700 font-medium items-center transition-all duration-300">
-                <li><a href="#suite" class="nav-link hover:text-blue-800">Suite</a></li>
-                <li><a href="#servizi" class="nav-link hover:text-blue-800">Servizi</a></li>
-                <li><a href="#galleria" class="nav-link hover:text-blue-800">Galleria</a></li>
-                <li><a href="#contatti" class="nav-link hover:text-blue-800">Contatti</a></li>
+            <ul class="hidden sm:flex gap-8 text-gray-700 font-medium items-center">
+                <li><a href="#suite" class="nav-link hover:text-blue-800 transition duration-300">Suite</a></li>
+                <li><a href="#servizi" class="nav-link hover:text-blue-800 transition duration-300">Servizi</a></li>
+                <li><a href="#galleria" class="nav-link hover:text-blue-800 transition duration-300">Galleria</a></li>
+                <li><a href="#contatti" class="nav-link hover:text-blue-800 transition duration-300">Contatti</a></li>
             </ul>
 
             <!-- Pulsante Mobile -->
-            <button id="menu-toggle" class="sm:hidden text-blue-800 focus:outline-none text-3xl">☰</button>
+            <button id="menu-toggle"
+                class="sm:hidden text-blue-800 focus:outline-none text-3xl transition-transform duration-300 hover:scale-110">☰</button>
         </nav>
 
-        <!-- Menu Mobile -->
+        <!-- Menu Mobile Slide-in -->
         <div id="mobile-menu"
-            class="hidden flex-col bg-white/90 backdrop-blur-md shadow-lg absolute w-full left-0 top-full p-6 space-y-4 text-lg">
-            <a href="#suite" class="block hover:text-blue-800">Suite</a>
-            <a href="#servizi" class="block hover:text-blue-800">Servizi</a>
-            <a href="#galleria" class="block hover:text-blue-800">Galleria</a>
-            <a href="#contatti" class="block hover:text-blue-800">Contatti</a>
+            class="fixed top-0 right-0 h-full w-3/4 sm:w-1/2 bg-white/95 backdrop-blur-md shadow-xl transform translate-x-full transition-transform duration-300 z-50 flex flex-col p-6 space-y-6">
+            <!-- Close Button -->
+            <button id="menu-close"
+                class="self-end text-2xl text-blue-800 hover:text-blue-600 transition-transform duration-300">✕</button>
+
+            <!-- Menu Links -->
+            <a href="#suite"
+                class="block text-lg font-medium text-gray-700 hover:text-blue-800 transition duration-200">Suite</a>
+            <a href="#servizi"
+                class="block text-lg font-medium text-gray-700 hover:text-blue-800 transition duration-200">Servizi</a>
+            <a href="#galleria"
+                class="block text-lg font-medium text-gray-700 hover:text-blue-800 transition duration-200">Galleria</a>
+            <a href="#contatti"
+                class="block text-lg font-medium text-gray-700 hover:text-blue-800 transition duration-200">Contatti</a>
         </div>
+
+        <!-- Overlay -->
+        <div id="overlay" class="fixed inset-0 bg-black/30 hidden z-40 transition-opacity duration-300"></div>
     </header>
 
     <!-- Hero Section -->
@@ -139,8 +165,10 @@
                     <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/592747746.jpg?k=703fc950ea4bd05cf981eff8ecbdff1f43bb95286231906d73bbde36985fd58c&o="
                         alt="Frigo Bar" class="w-full h-48 sm:h-56 object-cover">
                     <div class="p-4 text-center flex-1 flex flex-col justify-center">
-                        <h4 class="font-semibold text-lg mb-2">Frigo Bar</h4>
-                        <p class="text-gray-600 text-sm sm:text-base">Bevande e snack sempre a disposizione.</p>
+                        <h4 class="font-semibold text-lg mb-2">Comfort</h4>
+                        <p class="text-gray-600 text-sm sm:text-base">Lasciati trasportare e comfortare dalla nostra
+                            suite.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -152,75 +180,118 @@
         <div class="max-w-6xl mx-auto px-4">
             <h2 class="text-4xl font-bold text-center text-blue-800 mb-16">I Nostri Servizi</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+
+                <!-- Concierge -->
                 <div class="bg-white p-8 rounded-xl shadow-lg hover-scale">
                     <div class="w-16 h-16 bg-blue-200 rounded-full flex items-center justify-center mb-6 mx-auto">
                         <i class="fas fa-concierge-bell text-2xl text-blue-800"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-center mb-4">Concierge</h3>
-                    <p class="text-gray-600 text-center">Concierge preparato e disponibile a soddisfare ogni vostra
-                        richiesta</p>
+                    <p class="text-gray-600 text-center">Servizio concierge per rendere il tuo soggiorno perfetto.</p>
                 </div>
+
+                <!-- Aria Condizionata -->
                 <div class="bg-white p-8 rounded-xl shadow-lg hover-scale">
                     <div class="w-16 h-16 bg-blue-200 rounded-full flex items-center justify-center mb-6 mx-auto">
-                        <i class="fas fa-utensils text-2xl text-blue-800"></i>
+                        <i class="fas fa-wind text-2xl text-blue-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-4">Ristorante</h3>
-                    <p class="text-gray-600 text-center">Cucina tipica salentina e mediterranea</p>
+                    <h3 class="text-xl font-semibold text-center mb-4">Aria Condizionata</h3>
+                    <p class="text-gray-600 text-center">Climatizzazione completa per il massimo comfort.</p>
                 </div>
+
+                <!-- WiFi -->
                 <div class="bg-white p-8 rounded-xl shadow-lg hover-scale">
                     <div class="w-16 h-16 bg-blue-200 rounded-full flex items-center justify-center mb-6 mx-auto">
                         <i class="fas fa-wifi text-2xl text-blue-800"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-center mb-4">Wi-Fi Gratuito</h3>
-                    <p class="text-gray-600 text-center">Connessione internet in tutta la struttura</p>
+                    <p class="text-gray-600 text-center">Connessione veloce in tutta la struttura.</p>
                 </div>
+
+                <!-- Spiaggia -->
                 <div class="bg-white p-8 rounded-xl shadow-lg hover-scale">
                     <div class="w-16 h-16 bg-blue-200 rounded-full flex items-center justify-center mb-6 mx-auto">
-                        <i class="fas fa-parking text-2xl text-blue-800"></i>
+                        <i class="fas fa-umbrella-beach text-2xl text-blue-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-4">Parcheggio</h3>
-                    <p class="text-gray-600 text-center">Parcheggio gratuito per gli ospiti</p>
+                    <h3 class="text-xl font-semibold text-center mb-4">Spiaggia</h3>
+                    <p class="text-gray-600 text-center">A soli 2 minuti a piedi dal mare.</p>
                 </div>
+
+                <!-- Terrazza -->
                 <div class="bg-white p-8 rounded-xl shadow-lg hover-scale">
                     <div class="w-16 h-16 bg-blue-200 rounded-full flex items-center justify-center mb-6 mx-auto">
-                        <i class="fas fa-child text-2xl text-blue-800"></i>
+                        <i class="fas fa-mountain-sun text-2xl text-blue-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-4">Attività Bambini</h3>
-                    <p class="text-gray-600 text-center">Area giochi e attività dedicate ai più piccoli</p>
+                    <h3 class="text-xl font-semibold text-center mb-4">Terrazza Panoramica</h3>
+                    <p class="text-gray-600 text-center">Vista mozzafiato per colazioni e aperitivi al tramonto.</p>
                 </div>
+
+                <!-- Trasporti -->
                 <div class="bg-white p-8 rounded-xl shadow-lg hover-scale">
                     <div class="w-16 h-16 bg-blue-200 rounded-full flex items-center justify-center mb-6 mx-auto">
                         <i class="fas fa-shuttle-van text-2xl text-blue-800"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-center mb-4">Trasporti</h3>
-                    <p class="text-gray-600 text-center">Servizio navetta su richiesta</p>
+                    <h3 class="text-xl font-semibold text-center mb-4">Navetta</h3>
+                    <p class="text-gray-600 text-center">Servizio transfer su richiesta per stazione e aeroporto.</p>
                 </div>
             </div>
         </div>
     </section>
 
 
+
     <!-- Galleria Foto -->
     <section id="galleria" class="container mx-auto px-4 sm:px-6 py-12">
-        <h3 class="text-2xl sm:text-3xl font-semibold text-center text-gray-800 mb-8">Galleria Fotografica</h3>
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
-            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/699800161.jpg?k=c4a536317b253ddbc9abbd227ae582dc7f094ae94b6c8d3687c8e338021893d5&o="
-                alt="Foto galleria 1" class="rounded-xl object-cover w-full h-40 sm:h-48">
-            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/371501209.jpg?k=f7441ac1490e89a053d1c29c5dc20ad8e91afc942a800f6a5f11dfefcbb7948e&o="
-                alt="Foto galleria 2" class="rounded-xl object-cover w-full h-40 sm:h-48">
-            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/371501215.jpg?k=4d7629f33c3add4a9513feefc12662eb46f996bd5b5715a62647a5fd6beac2e1&o="
-                alt="Foto galleria 3" class="rounded-xl object-cover w-full h-40 sm:h-48">
-            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/371501213.jpg?k=5d43b27b2fec55633c21ea3081f66c5e1cb9870a33b9c5792c918326fff468c6&o="
-                alt="Foto galleria 4" class="rounded-xl object-cover w-full h-40 sm:h-48">
-            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/699801430.jpg?k=c7e9a434a4b45e08b832546867d8baa2442565a4734ca5be0a0e8a403942d064&o="
-                alt="Foto galleria 5" class="rounded-xl object-cover w-full h-40 sm:h-48">
-            <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/371501235.jpg?k=184466e1bbd7566372a4502cc329244a5dff9a49b3e3ceb0f4191e76ca5b30ac&o="
-                alt="Foto galleria 6" class="rounded-xl object-cover w-full h-40 sm:h-48">
+        <h3 class="text-2xl sm:text-3xl font-semibold text-center text-gray-800 mb-8">
+            Galleria Fotografica
+        </h3>
+
+        <!-- Wrapper Swiper -->
+        <div class="swiper galleriaSwiper relative">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/699800161.jpg?k=c4a536317b253ddbc9abbd227ae582dc7f094ae94b6c8d3687c8e338021893d5&o="
+                        alt="Foto 1"
+                        class="rounded-2xl object-cover w-full h-64 sm:h-80 shadow-lg hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/371501209.jpg?k=f7441ac1490e89a053d1c29c5dc20ad8e91afc942a800f6a5f11dfefcbb7948e&o="
+                        alt="Foto 2"
+                        class="rounded-2xl object-cover w-full h-64 sm:h-80 shadow-lg hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/371501215.jpg?k=4d7629f33c3add4a9513feefc12662eb46f996bd5b5715a62647a5fd6beac2e1&o="
+                        alt="Foto 3"
+                        class="rounded-2xl object-cover w-full h-64 sm:h-80 shadow-lg hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/371501213.jpg?k=5d43b27b2fec55633c21ea3081f66c5e1cb9870a33b9c5792c918326fff468c6&o="
+                        alt="Foto 4"
+                        class="rounded-2xl object-cover w-full h-64 sm:h-80 shadow-lg hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/699801430.jpg?k=c7e9a434a4b45e08b832546867d8baa2442565a4734ca5be0a0e8a403942d064&o="
+                        alt="Foto 5"
+                        class="rounded-2xl object-cover w-full h-64 sm:h-80 shadow-lg hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="swiper-slide">
+                    <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/371501235.jpg?k=184466e1bbd7566372a4502cc329244a5dff9a49b3e3ceb0f4191e76ca5b30ac&o="
+                        alt="Foto 6"
+                        class="rounded-2xl object-cover w-full h-64 sm:h-80 shadow-lg hover:scale-105 transition-transform duration-300">
+                </div>
+            </div>
+
+            <!-- Paginazione -->
+            <div class="swiper-pagination"></div>
+
+            <!-- Frecce Navigazione -->
+            <div class="swiper-button-prev !text-blue-800 hover:scale-125 transition-transform"></div>
+            <div class="swiper-button-next !text-blue-800 hover:scale-125 transition-transform"></div>
         </div>
     </section>
 
     <!-- Recensioni -->
-    <section id="recensioni" class="py-20 bg-gray-50">
+    <section id=" recensioni" class="py-20 bg-gray-50">
         <div class="max-w-6xl mx-auto px-4">
             <h2 class="text-3xl sm:text-4xl font-bold text-center text-blue-800 mb-12">
                 Cosa Dicono i Nostri Clienti
@@ -233,7 +304,7 @@
                     <div class="swiper-slide">
                         <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col h-full">
                             <div class="flex items-center mb-3">
-                                <img src="https://img.icons8.com/ios-filled/50/1d4ed8/tripadvisor.png"
+                                <img src="https://imgs.search.brave.com/BowS64DbyKs56sAQwZ8o5ZstbNJg9oT8zx7PetPZXXk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc2Vla2xvZ28u/Y29tL2xvZ28tcG5n/LzQ4LzIvYm9va2lu/Zy1sb2dvLXBuZ19z/ZWVrbG9nby00ODI3/ODIucG5n"
                                     class="w-8 h-8 mr-2" />
                                 <div class="flex text-yellow-400 text-lg">
                                     ⭐⭐⭐⭐⭐
@@ -241,7 +312,8 @@
                             </div>
                             <p class="text-gray-700 flex-1">
                                 "L' arrivo con il cocktail di benvenuto è stato fantastico,
-                                l' albergatore è stato molto gentile ci ha messo subito a nostro agio. La location
+                                l' albergatore è stato molto gentile ci ha messo subito a nostro agio. La
+                                location
                                 ...fantastica."
                             </p>
                             <p class="font-semibold text-blue-800 mt-3">— Valentina S.</p>
@@ -251,7 +323,7 @@
                     <div class="swiper-slide">
                         <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col h-full">
                             <div class="flex items-center mb-3">
-                                <img src="https://img.icons8.com/ios-filled/50/1d4ed8/tripadvisor.png"
+                                <img src="https://imgs.search.brave.com/BowS64DbyKs56sAQwZ8o5ZstbNJg9oT8zx7PetPZXXk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc2Vla2xvZ28u/Y29tL2xvZ28tcG5n/LzQ4LzIvYm9va2lu/Zy1sb2dvLXBuZ19z/ZWVrbG9nby00ODI3/ODIucG5n"
                                     class="w-8 h-8 mr-2" />
                                 <div class="flex text-yellow-400 text-lg">
                                     ⭐⭐⭐⭐⭐
@@ -268,17 +340,16 @@
                     <div class="swiper-slide">
                         <div class="bg-white rounded-2xl shadow-lg p-6 flex flex-col h-full">
                             <div class="flex items-center mb-3">
-                                <img src="https://img.icons8.com/ios-filled/50/1d4ed8/tripadvisor.png"
+                                <img src="https://imgs.search.brave.com/BowS64DbyKs56sAQwZ8o5ZstbNJg9oT8zx7PetPZXXk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc2Vla2xvZ28u/Y29tL2xvZ28tcG5n/LzQ4LzIvYm9va2lu/Zy1sb2dvLXBuZ19z/ZWVrbG9nby00ODI3/ODIucG5n"
                                     class="w-8 h-8 mr-2" />
                                 <div class="flex text-yellow-400 text-lg">
                                     ⭐⭐⭐⭐☆
                                 </div>
                             </div>
                             <p class="text-gray-700 flex-1">
-                                "Alloggio con vasca idromassaggio,tv,condizionatore,camino, frigo bar con bevande e
-                                acqua, e un bellissimo terrazzo all'esterno con tavolino, sedie e ombrellone. Camera con
-                                tutti i comfort, pulizia eccezionale, che dire consigliatissimo e ci ritorneremo
-                                sicuramente per un altra occasione speciale. Grazie"
+                                "Alloggio con vasca idromassaggio,tv,condizionatore,camino, frigo bar con
+                                bevande e
+                                acqua, e un bellissimo terrazzo all'esterno con tavolino, sedie e ombrellone.
                             </p>
                             <p class="font-semibold text-blue-800 mt-3">—
                                 Battista M.</p>
@@ -291,11 +362,11 @@
             </div>
 
             <div class="text-center mt-8">
-                <a href="https://www.tripadvisor.it/Hotel_Review-g1024739-d574808-Reviews-Hotel_Costa_d_Oro-Salve_Province_of_Lecce_Puglia.html"
+                <a href="https://www.booking.com/hotel/it/anzio-d-amare.it.html?msockid=08c226034ca466452cf8359a4dd36754&chal_t=1758724792390&force_referer=https%3A%2F%2Fwww.bing.com%2F#map_closed"
                     target="_blank"
                     class="inline-flex items-center px-6 py-3 bg-blue-800 text-white rounded-full shadow-md hover:bg-blue-700 transition">
                     <i class="fab fa-tripadvisor mr-2"></i>
-                    Leggi tutte le recensioni su Tripadvisor
+                    Leggi tutte le recensioni su Booking
                 </a>
             </div>
         </div>
@@ -359,7 +430,7 @@
     </footer>
 
     <!-- Bottone WhatsApp -->
-    <a href="https://wa.me/393500630818" target="_blank"
+    <a href="https://wa.me/3500630818" target="_blank"
         class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition">
         💬
     </a>
@@ -394,6 +465,64 @@
             autoplay: { delay: 5000 },
             breakpoints: { 640: { slidesPerView: 2 }, 1024: { slidesPerView: 3 } },
         });
+
+
+        // Carosello Galleria
+        new Swiper('.galleriaSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            centeredSlides: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+            }
+        });
+
+
+        const toggleButton = document.getElementById('menu-toggle');
+        const closeButton = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const overlay = document.getElementById('overlay');
+
+        // Apri menu
+        toggleButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-full');
+            overlay.classList.remove('hidden');
+        });
+
+        // Chiudi menu
+        closeButton.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+            overlay.classList.add('hidden');
+        });
+
+        // Chiudi menu cliccando overlay
+        overlay.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+            overlay.classList.add('hidden');
+        });
+
+        // Chiudi menu cliccando un link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+                overlay.classList.add('hidden');
+            });
+        });
+
     </script>
 </body>
 
